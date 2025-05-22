@@ -33,18 +33,7 @@ function TaskList() {
   };
 
 
-// const handleToggleStatus = async (id, currentStatus) => {
-//     const newStatus = currentStatus === 1 ? 0 : 1;
-  
-//     try {
-//       await TaskService.updateTaskStatus(id, newStatus);  // No need to cast to string
-//       alert('Status updated successfully!');
-//       fetchTasks();
-//     } catch (error) {
-//       console.error('Error updating task status:', error);
-//       alert('Failed to update task status.');
-//     }
-//   };
+
 const handleToggleStatus = async (id, newStatus) => {
     try {
       await TaskService.updateTaskStatus(id, newStatus);
