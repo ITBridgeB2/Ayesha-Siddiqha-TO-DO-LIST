@@ -21,27 +21,6 @@ app.get("/tasks", async function (request, response) {    //localhost:9090/tasks
     return response.json(result);   //all the tasks
 })
 
-//to post 
-// app.post('/tasks', async (req, res) => {
-//     try {
-//       const connection = await mysql.createConnection(db);
-//       const { title, description } = req.body;
-  
-//       if (!title) {
-//         return res.status(400).json({ message: 'Title is required' });
-//       }
-  
-//       const [result] = await connection.execute(
-//         'INSERT INTO tasks (title, description) VALUES (?, ?)',
-//         [title, description]
-//       );
-//       await connection.end();
-//         res.status(201).json(rows[0]);
-//     } catch (error) {
-//       console.error('Error creating task:', error);
-//       res.status(500).json({ error: 'Failed to create task' });
-//     }
-//   });
 app.post('/tasks', async (req, res) => {
     try {
       const connection = await mysql.createConnection(db);
@@ -69,53 +48,7 @@ app.post('/tasks', async (req, res) => {
       res.status(500).json({ error: 'Failed to create task' });
     }
   });
-// for update
-// app.put('/tasks/:id', async (req, res) => {
-//     try {
-//       const connection = await mysql.createConnection(db);
-//       const { title, description } = req.body;
-//       const { id } = req.params;
-  
-//       const [result] = await connection.execute(
-//         'UPDATE tasks SET title = ?, description = ? WHERE id = ?',
-//         [title, description, id]
-//       );
-  
-//       await connection.end();
-  
-//       if (result.affectedRows === 0) {
-//         return res.status(404).json({ error: 'Task not found' });
-//       }
-  
-//       res.json({ message: 'Task updated successfully' });
-//     } catch (error) {
-//       console.error('Error updating task:', error);
-//       res.status(500).json({ error: 'Failed to update task' });
-//     }
-//   });
-// app.put('/tasks/:id', async (req, res) => {
-//     try {
-//       const connection = await mysql.createConnection(db);
-//       const { title, description, completed } = req.body; // include completed
-//       const { id } = req.params;
-  
-//       const [result] = await connection.execute(
-//         'UPDATE tasks SET title = ?, description = ?, completed = ? WHERE id = ?',
-//         [title, description, completed, id]
-//       );
-  
-//       await connection.end();
-  
-//       if (result.affectedRows === 0) {
-//         return res.status(404).json({ error: 'Task not found' });
-//       }
-  
-//       res.json({ message: 'Task updated successfully' });
-//     } catch (error) {
-//       console.error('Error updating task:', error);
-//       res.status(500).json({ error: 'Failed to update task' });
-//     }
-//   });
+
 
 app.put('/tasks/:id', async (req, res) => {
     try {
@@ -171,42 +104,7 @@ app.delete('/tasks/:id', async (req, res) => {
     res.status(500).json({ error: 'Failed to delete task' });
   }
 });
-//to pick a particular field
-// app.put('/tasks/:id/:completed', async (req, res) => {
-//     try {
-//       const { id, completed } = req.params; // Get the task ID and completed status from the URL params
-  
-//       // Validate if completed is either '0' or '1' (the completed status will come as a string from the URL)
-//       if (completed !== '0' && completed !== '1') {
-//         return res.status(400).json({ error: 'Invalid status value. Use 0 for Pending or 1 for Completed.' });
-//       }
-  
-//       // Convert 'completed' from string to number (since it's passed in the URL as a string)
-//       const completedStatus = parseInt(completed);
-  
-//       // Establish database connection
-//       const connection = await mysql.createConnection(db);
-  
-//       // SQL query to update the task status
-//       const [result] = await connection.execute(
-//         'UPDATE tasks SET completed = ? WHERE id = ?',
-//         [completedStatus, id]
-//       );
-  
-//       await connection.end();
-  
-//       // If no rows were affected, it means the task with the given ID doesn't exist
-//       if (result.affectedRows === 0) {
-//         return res.status(404).json({ error: 'Task not found' });
-//       }
-  
-//       // Send success message if task status is updated
-//       res.json({ message: 'Task status updated successfully' });
-//     } catch (error) {
-//       console.error('Error updating task status:', error);
-//       res.status(500).json({ error: 'Failed to update task status' });
-//     }
-//   });
+
 app.put('/tasks/:id/:completed', async (req, res) => {
     const { id, completed } = req.params;
   
