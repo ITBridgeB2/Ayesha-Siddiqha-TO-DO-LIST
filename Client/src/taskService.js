@@ -56,28 +56,8 @@ class TaskService {
         throw error;
       });
   }
-//   updateTaskStatus(id, completed) {
-//     // Instead of passing completed in the body, pass it in the URL
-//     return axios
-//       .patch(`${this.API_URL}/tasks/${id}/${completed}`)
-//       .then(response => response)
-//       .catch(error => {
-//         console.error(`Error updating status for task with ID ${id}:`, error);
-//         throw error;
-//       });
-//   }
-// updateTaskStatus(id, completed) {
-//     const url = `${this.API_URL}/tasks/${id}/${completed}`;
-//     console.log('Requesting URL:', url);  // Log the constructed URL
-  
-//     return axios
-//       .put(url)
-//       .then(response => response)
-//       .catch(error => {
-//         console.error(`Error updating status for task with ID ${id}:`, error);
-//         throw error;
-//       });
-//   }
+
+
 updateTaskStatus(id, completed) {
     const url = `${this.API_URL}/tasks/${id}/${completed}`;
     console.log('Requesting URL:', url);
